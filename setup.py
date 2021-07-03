@@ -30,7 +30,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    packages=["emojigg"],
+    packages=["emojipy"],
     include_package_data=True,
     install_requires=requirements,
     entry_points={
