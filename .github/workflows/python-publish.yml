@@ -6,11 +6,9 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Publish Python Package
+name: Upload Python Package
 
-on:
-  release:
-    types: [published]
+on: push
 
 jobs:
   deploy:
