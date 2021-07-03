@@ -6,9 +6,6 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
 
-with open('requirements.txt') as f:
-  requirements = f.read().splitlines()
-
 setup(
     author="Iced Chai",
     name="emojigg",
@@ -32,7 +29,9 @@ setup(
     ],
     packages=["emojigg"],
     include_package_data=True,
-    install_requires=requirements,
+    install_requires=[
+        'aiofiles==0.7.0'
+    ],
     entry_points={
         "console_scripts": [
             "square=square.__main__:main",
