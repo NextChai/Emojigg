@@ -1,5 +1,4 @@
 import aiohttp
-from attr import has
 from .http import HTTP
 from .pack import Pack
 from .emoji import Emoji
