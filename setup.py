@@ -5,9 +5,9 @@ HERE = pathlib.Path(__file__).parent
 
 README = (HERE / "README.md").read_text()
 
-requirements = [
-    'aiofiles==0.7.0'
-]
+
+with open('requirements.txt') as f:
+  requirements = f.read().splitlines()
 
 setup(
     author="Iced Chai",
@@ -30,7 +30,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    packages=["emojipy"],
+    packages=["emojigg"],
     include_package_data=True,
     install_requires=requirements,
     entry_points={
