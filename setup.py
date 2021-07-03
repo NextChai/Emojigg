@@ -11,7 +11,7 @@ requirements = [
 
 setup(
     author="Iced Chai",
-    name="emojipy",
+    name="emojigg",
     description="Async wrapper for the EmojiGG api.",
     long_description=README,
     long_description_content_type="text/markdown",

@@ -1,11 +1,12 @@
+from emojigg import emoji
 import discord
 from discord.ext import commands
-import emojipy
+import emojigg
 
 bot = commands.Bot(
     command_prefix='!', description='A very useful test bot.'
 )
-bot.emoji_gg = emojipy.Client()
+bot.emoji_gg = emojigg.Client()
 
 @commands.command(
     name='count',

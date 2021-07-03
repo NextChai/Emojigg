@@ -1,8 +1,9 @@
+from emojigg import emoji
 import discord
 from discord.ext import commands
 
 import aiohttp
-import emojipy
+import emojigg
 
 
 class Bot(commands.Bot):
@@ -12,7 +13,7 @@ class Bot(commands.Bot):
             description='A super helpful test bot.'
         )
         self.session = aiohttp.ClientSession()
-        self.emoji_gg = emojipy.Client(self.session)
+        self.emoji_gg = emojigg.Client(self.session)
         
 
 bot = Bot() 

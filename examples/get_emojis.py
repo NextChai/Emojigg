@@ -1,4 +1,4 @@
-import emojipy
+import emojigg
 import asyncio
 
 import logging
@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 async def main():
-    client = emojipy.Client()
+    client = emojigg.Client()
     
     emojis = await client.fetch_emojis()
     logging.info(f"Total emojis: {len(emojis)}")
