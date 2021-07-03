@@ -1,4 +1,3 @@
-from emojigg import emoji
 import discord
 from discord.ext import commands
 
