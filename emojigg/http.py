@@ -49,7 +49,7 @@ class HTTP:
         
         Returns
         -------
-        dict
+        List[Emoji]
         """
         data = await self.request('GET', Route('/'))
         return [Emoji(entry) for entry in data]
@@ -60,7 +60,7 @@ class HTTP:
         
         Returns
         -------
-        dict
+        List[Pack]
         """
         data = await self.request('GET', Route('/packs'))
         return [Pack(entry) for entry in data]
