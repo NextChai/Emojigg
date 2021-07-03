@@ -54,7 +54,7 @@ class HTTP:
         data = await self.request('GET', Route('/'))
         return [Emoji(entry) for entry in data]
     
-    async def fetch_packs(self):
+    async def fetch_packs(self) -> List[Pack]:
         """
         Retreives packs from the website.
         
@@ -65,7 +65,7 @@ class HTTP:
         data = await self.request('GET', Route('/packs'))
         return [Pack(entry) for entry in data]
     
-    async def fetch_statistics(self):
+    async def fetch_statistics(self) -> Dict:
         """
         Retreives statistics about this website.
         
@@ -77,7 +77,7 @@ class HTTP:
             'request': 'stats'
         }))
         
-    async def fetch_categories(self):
+    async def fetch_categories(self) -> Dict:
         """
         Retreives categories from the website. Fetches the current categories
         
