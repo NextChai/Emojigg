@@ -17,7 +17,9 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/NextChai/Emojigg",
     project_urls = {
-        'Documentation': 'https://github.com/NextChai/Emojigg/wiki'
+        'Documentation': 'https://github.com/NextChai/Emojigg/wiki',
+        'Report a Bug': 'https://github.com/NextChai/Emojigg/issues',
+        "Contribute": 'https://github.com/NextChai/Emojigg/pulls'
     },
     version="0.0.1",
     license="MIT",
