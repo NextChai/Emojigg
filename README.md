@@ -1,5 +1,5 @@
 # Emojigg
-An async API wrapper for emoji.gg. 
+An async API wrapper for [emoji.gg](https://emoji.gg/). 
 
 Useful for Discord Bots using [discord.py](https://github.com/Rapptz/discord.py), or for any project you're working on.
 
