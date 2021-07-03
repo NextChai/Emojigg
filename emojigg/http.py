@@ -45,6 +45,8 @@ class HTTP:
     
     async def fetch_emojis(self) -> List[Emoji]:
         """
+        |coro|
+        
         Retreives approx 5000 emojis from the website.
         
         Returns
@@ -56,6 +58,8 @@ class HTTP:
     
     async def fetch_packs(self) -> List[Pack]:
         """
+        |coro|
+        
         Retreives packs from the website.
         
         Returns
@@ -67,11 +71,13 @@ class HTTP:
     
     async def fetch_statistics(self) -> Dict:
         """
+        |coro|
+        
         Retreives statistics about this website.
         
         Returns
         -------
-        dict
+        Dict
         """
         return await self.request('GET', Route(params={
             'request': 'stats'
@@ -79,11 +85,13 @@ class HTTP:
         
     async def fetch_categories(self) -> Dict:
         """
+        |coro|
+        
         Retreives categories from the website. Fetches the current categories
         
         Returns
         -------
-        dict
+        Dict
         """
         return await self.request('GET', Route(params={
             'request': 'categories'
