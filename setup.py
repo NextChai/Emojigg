@@ -5,9 +5,9 @@ HERE = pathlib.Path(__file__).parent
 
 README = (HERE / "README.md").read_text()
 
-
-with open('requirements.txt') as f:
-  requirements = f.read().splitlines()
+requirements = [
+    'aiofiles==0.7.0'
+]
 
 setup(
     author="Iced Chai",
