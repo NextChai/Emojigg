@@ -5,6 +5,8 @@ HERE = pathlib.Path(__file__).parent
 
 README = (HERE / "README.md").read_text()
 
+VERSION = "0.0.4"
+
 
 setup(
     author="Iced Chai",
@@ -18,7 +20,7 @@ setup(
         'Report a Bug': 'https://github.com/NextChai/Emojigg/issues',
         "Contribute": 'https://github.com/NextChai/Emojigg/pulls'
     },
-    version="0.0.3",
+    version=VERSION,
     license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
