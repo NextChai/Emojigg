@@ -21,7 +21,7 @@ setup(
         'Report a Bug': 'https://github.com/NextChai/Emojigg/issues',
         "Contribute": 'https://github.com/NextChai/Emojigg/pulls'
     },
-    version="0.0.1",
+    version="0.0.2",
     license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
