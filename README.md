@@ -1,4 +1,4 @@
-# Emojipy
+# Emojigg
 An Async API wrapper for emoji.gg. Useful for Discord Bots, or just trying to get some fun information
 
 
