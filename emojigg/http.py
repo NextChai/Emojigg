@@ -1,14 +1,21 @@
 import aiohttp
-from typing import Optional, List, Dict
+
+from typing import (
+    Optional, 
+    List, 
+    Dict,
+    ClassVar
+)
+
 
 from .emoji import Emoji
-from .categories import Categories
 from .pack import Pack
 from .errors import NotImplemented
 
-BASE = 'https://emoji.gg/api'
 
 class Route:
+    BASE: ClassVar[str] = 'https://emoji.gg/api'
+    
     def __init__(
         self, 
         ext: str = '', 
@@ -19,7 +26,7 @@ class Route:
     
     @property
     def url(self) -> str:
-        return BASE + self.ext
+        return self.BASE + self.ext
 
 
 class HTTP:
@@ -53,8 +60,7 @@ class HTTP:
         -------
         List[Emoji]
         """
-        data = await self.request('GET', Route('/'))
-        return [Emoji(entry) for entry in data]
+        return await self.request('GET', Route('/'))
     
     async def fetch_packs(self) -> List[Pack]:
         """
@@ -66,8 +72,7 @@ class HTTP:
         -------
         List[Pack]
         """
-        data = await self.request('GET', Route('/packs'))
-        return [Pack(entry) for entry in data]
+        return await self.request('GET', Route('/packs'))
     
     async def fetch_statistics(self) -> Dict:
         """

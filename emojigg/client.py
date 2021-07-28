@@ -1,54 +1,113 @@
 import aiohttp
-from .http import HTTP
-from .pack import Pack
-from .emoji import Emoji
-from .errors import WrongType
 
 from typing import (
     Optional, 
     List, 
-    Union
+    Union,
+    Dict,
+    Any
 )
 
+from .http import HTTP
+from .pack import Pack
+from .emoji import Emoji
 
-class Client(HTTP):
+
+class Client:
     def __init__(
         self, 
         session: Optional[aiohttp.ClientSession] = None
     ) -> None:
-        super().__init__(session=session or aiohttp.ClientSession())
-
-    async def get_pack_from(
-        self, 
-        attr: str, 
-        value: str,
-        *,
-        packs: List[Pack] = []
-    ) -> Union[None, Emoji]:
+        session = session or aiohttp.ClientSession()
+        self._http = HTTP(session)
+        
+    async def fetch_emojis(self) -> List[Emoji]:
         """
-        Get pack from an attribute of the Pack.
+        |coro|
+        
+        Retreives approx 5000 emojis from the website.
+        
+        Returns
+        -------
+        List[Emoji]
+        """
+        data = await self._http.fetch_emojis()
+        return [Emoji(entry) for entry in data]
+    
+    async def fetch_packs(self) -> List[Pack]:
+        """
+        |coro|
+        
+        Retreives packs from the website.
+        
+        Returns
+        -------
+        List[Pack]
+        """
+        data = await self._http.fetch_packs()
+        return [Pack(entry) for entry in data]
+    
+    async def fetch_statistics(self) -> Dict:
+        """
+        |coro|
+        
+        Retreives statistics about this website.
+        
+        Returns
+        -------
+        Dict
+        """
+        return await self._http.fetch_statistics()
+    
+    async def fetch_categories(self) -> Dict:
+        """
+        |coro|
+        
+        Retreives categories from the website. Fetches the current categories
+        
+        Returns
+        -------
+        Dict
+        """
+        return await self._http.fetch_categories()
+    
+    def find(
+        self,
+        iterable: List[Any],
+        check: Any
+    ) -> Union[None, Any]:
+        """
+        Find something within a list according to your check.
         
         Parameters
         ----------
-        attr: str
-            The attribute of the Pack you want to search for
-        value: str
-            The vlaue you want the attribute to be.
-        packs: List[Pack]
-            The optional list of packs to search through. If none is specified a request will be made to get all packs.
+        iterable: List[Any]
+            The thing you want to iterate through
+        check: Any
+            The check func you want to use.
             
-        Returns
+        Examples
         -------
-        Optional[Pack]
+        Using Lambda:
+        ```python
+        data = await client.fetch_emojis()
+        specific_emoji = client.find(data, check=lambda emoji: emoji.name == 'this')
+        ```
+        
+        Using a check func:
+        ```python
+        data = await client.fetch_emojis()
+        
+        def check(emoji):
+            return emoji.name == 'this'
+            
+        specific_emoji = client.find(data, check=check)
+        ```
         """
-        packs = await self.fetch_packs() if not packs else packs
-        if not hasattr(packs[0], attr):
-            raise WrongType(f"class Pack does not have attribute {attr}")
-        
-        for pack in packs:
-            if getattr(pack, attr) == value:
-                return pack
-        
+        for iter in iterable:
+            if check(iter):
+                return iter
         return None
+
 
     
