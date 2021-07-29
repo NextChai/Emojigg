@@ -4,12 +4,10 @@ from typing import (
     Union
 )
 
-from .http import HTTP
-
 class Emoji:
     def __init__(
         self, 
-        state: HTTP,
+        state,
         data: Dict
         ) -> None:
         self._state = state
