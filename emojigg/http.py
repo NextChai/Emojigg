@@ -1,12 +1,13 @@
+import io
 import aiohttp
 
 from typing import (
     Optional, 
     List, 
     Dict,
-    ClassVar
+    ClassVar,
+    Union
 )
-
 
 from .emoji import Emoji
 from .pack import Pack
@@ -49,55 +50,26 @@ class HTTP:
                     await resp.read()  # I don't know if this is json, we'll return the read version instead.
                 )
             return await resp.json() 
-    
+        
+    async def url_to_bytes(self, url: str) -> Union[io.BytesIO, None]:
+        async with self.bot.session.get(url) as resp:
+            if resp.status != 200:
+                return None
+            
+            return io.BytesIO(await resp.read())
+
     async def fetch_emojis(self) -> List[Emoji]:
-        """
-        |coro|
-        
-        Retreives approx 5000 emojis from the website.
-        
-        Returns
-        -------
-        List[Emoji]
-        """
         return await self.request('GET', Route('/'))
     
     async def fetch_packs(self) -> List[Pack]:
-        """
-        |coro|
-        
-        Retreives packs from the website.
-        
-        Returns
-        -------
-        List[Pack]
-        """
         return await self.request('GET', Route('/packs'))
     
     async def fetch_statistics(self) -> Dict:
-        """
-        |coro|
-        
-        Retreives statistics about this website.
-        
-        Returns
-        -------
-        Dict
-        """
         return await self.request('GET', Route(params={
             'request': 'stats'
         }))
         
     async def fetch_categories(self) -> Dict:
-        """
-        |coro|
-        
-        Retreives categories from the website. Fetches the current categories
-        
-        Returns
-        -------
-        Dict
-        """
         return await self.request('GET', Route(params={
             'request': 'categories'
         }))

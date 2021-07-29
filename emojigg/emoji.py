@@ -1,12 +1,19 @@
+import io
 from typing import (
-    Dict
+    Dict,
+    Union
 )
+
+from .http import HTTP
 
 class Emoji:
     def __init__(
         self, 
-        data: dict
+        state: HTTP,
+        data: Dict
         ) -> None:
+        self._state = state
+        
         self._raw: Dict = data
         self.id: int = data.pop('id')
         self.title: str = data.pop('title')
@@ -33,4 +40,14 @@ class Emoji:
         """
         return self.description.capitalize()
 
-    
+    async def to_bytes(self) -> Union[io.BytesIO, None]:
+        """
+        |coro|
+        
+        Turn the image url to a bytes like object.
+        
+        Returns
+        -------
+            Union[io.BytesIO, None]
+        """
+        return await self._state.url_to_bytes(self.image)

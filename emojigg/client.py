@@ -32,7 +32,7 @@ class Client:
         List[Emoji]
         """
         data = await self._http.fetch_emojis()
-        return [Emoji(entry) for entry in data]
+        return [Emoji(self._http, entry) for entry in data]
     
     async def fetch_packs(self) -> List[Pack]:
         """
@@ -45,7 +45,7 @@ class Client:
         List[Pack]
         """
         data = await self._http.fetch_packs()
-        return [Pack(entry) for entry in data]
+        return [Pack(self._http, entry) for entry in data]
     
     async def fetch_statistics(self) -> Dict:
         """
