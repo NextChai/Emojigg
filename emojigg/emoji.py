@@ -1,5 +1,3 @@
-from .categories import Categories
-
 class Emoji:
     def __init__(
         self, 
@@ -18,6 +16,7 @@ class Emoji:
         self.width = data.pop('width')
         self.height = data.pop('height')
         self.filesize = data.pop('filesize')
+        self.category = data.pop('category')
         
     @property
     def formatted_description(self) -> str:
@@ -29,7 +28,4 @@ class Emoji:
         """
         return self.description.capitalize()
 
-    @property
-    def category(self) -> str:
-        category = self._raw.get('category')
-        return Categories().types.get(str(category))
+    
