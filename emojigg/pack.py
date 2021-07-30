@@ -18,6 +18,15 @@ class Pack:
         self.emojis: List[str] = data.pop('emojis')  # I want to change this.
         self.amount: int = data.pop('amount')
     
+    def __str__(self) -> str:
+        return self.name
+    
+    def __eq__(self, other) -> bool:
+        return self.id == other.id
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     @property
     def formatted_name(self) -> str:
         """

@@ -20,14 +20,27 @@ class Emoji:
         self.url: str = self.image
         self.description: str = data.pop('description')
         self.category: int = data.pop('category')
-        self.license: int = int(data.pop('license'))
+
+        license = data.pop('license')
+        if license.isdigit():
+            license = int(license)
+        self.license: Union[int, str] = license
         self.source: str = data.pop('source')
         self.faves: int = data.pop('faves')
         self.submitted_by: str = data.pop('submitted_by')
         self.width: int = data.pop('width')
         self.height: int = data.pop('height')
         self.filesize: int = data.pop('filesize')
-        
+
+    def __str__(self) -> str:
+        return self.title
+    
+    def __eq__(self, other) -> bool:
+        return self.id == other.id
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     @property
     def formatted_description(self) -> str:
         """

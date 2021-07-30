@@ -34,6 +34,7 @@ def get(
 
 def find(
     iterable: Iterable,
+    *,
     check: Callable
 ) -> Union[None, Any]:
     """
