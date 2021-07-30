@@ -59,10 +59,12 @@ class HTTP:
             return io.BytesIO(await resp.read())
 
     async def fetch_emojis(self) -> List[Emoji]:
-        return await self.request('GET', Route('/'))
+        data = await self.request('GET', Route('/'))
+        return [Emoji(self, entry) for entry in data]
     
     async def fetch_packs(self) -> List[Pack]:
-        return await self.request('GET', Route('/packs'))
+        data = await self.request('GET', Route('/packs'))
+        return [Pack(self, entry) for entry in data]
     
     async def fetch_statistics(self) -> Dict:
         return await self.request('GET', Route(params={
@@ -73,3 +75,4 @@ class HTTP:
         return await self.request('GET', Route(params={
             'request': 'categories'
         }))
+        

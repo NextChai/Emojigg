@@ -10,6 +10,12 @@ logging.basicConfig(level=logging.INFO)
 async def main():
     client = emojigg.Client()
     
-    emoji = await client.fetch_emoji_by('id', 6188)
+    packs = await client.fetch_packs()
+    for pack in packs:
+        emojis = await pack.emojis()
+        if not emojis:
+            continue
+        for emoji in emojis:
+            print(emoji.title)
 
 asyncio.run(main())

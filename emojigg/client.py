@@ -48,7 +48,7 @@ class Client:
         emojis = await self.fetch_emojis()
         return utils.find(emojis, check=lambda emoji: getattr(emoji, type) == value)
 
-    async def fetch_pack_by(self type: str, vaue: Union[str, int]) -> Optional[Pack]:
+    async def fetch_pack_by(self, type: str, vaue: Union[str, int]) -> Optional[Pack]:
         """
         |coro|
 
@@ -84,8 +84,7 @@ class Client:
         -------
         List[Emoji]
         """
-        data = await self._http.fetch_emojis()
-        return [Emoji(self._http, entry) for entry in data]
+        return await self._http.fetch_emojis()
     
     async def fetch_packs(self) -> List[Pack]:
         """
@@ -97,8 +96,7 @@ class Client:
         -------
         List[Pack]
         """
-        data = await self._http.fetch_packs()
-        return [Pack(self._http, entry) for entry in data]
+        return await self._http.fetch_packs()
     
     async def fetch_statistics(self) -> Dict:
         """
