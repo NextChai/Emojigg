@@ -1,7 +1,8 @@
 import io
 from typing import (
     Dict,
-    Union
+    Union,
+    Any
 )
 
 class Emoji:
@@ -20,7 +21,7 @@ class Emoji:
         self.url: str = self.image
         self.description: str = data.pop('description')
         self.category: int = data.pop('category')
-        self.license: int = int(data.pop('license'))
+        self.license: Any = data.pop('license')
         self.source: str = data.pop('source')
         self.faves: int = data.pop('faves')
         self.submitted_by: str = data.pop('submitted_by')
