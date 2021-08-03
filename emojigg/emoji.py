@@ -20,11 +20,7 @@ class Emoji:
         self.url: str = self.image
         self.description: str = data.pop('description')
         self.category: int = data.pop('category')
-
-        license = data.pop('license')
-        if license.isdigit():
-            license = int(license)
-        self.license: Union[int, str] = license
+        self.license: Union[int, str] = data.pop('license')
         self.source: str = data.pop('source')
         self.faves: int = data.pop('faves')
         self.submitted_by: str = data.pop('submitted_by')
