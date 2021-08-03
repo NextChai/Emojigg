@@ -48,7 +48,7 @@ class Client:
         emojis = await self.fetch_emojis()
         return utils.find(emojis, check=lambda emoji: getattr(emoji, type) == value)
 
-    async def fetch_pack_by(self, type: str, vaue: Union[str, int]) -> Optional[Pack]:
+    async def fetch_pack_by(self, type: str, value: Union[str, int]) -> Optional[Pack]:
         """
         |coro|
 

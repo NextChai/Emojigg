@@ -20,13 +20,18 @@ class Emoji:
         self.url: str = self.image
         self.description: str = data.pop('description')
         self.category: int = data.pop('category')
-        self.license: Union[int, str] = data.pop('license')
         self.source: str = data.pop('source')
         self.faves: int = data.pop('faves')
         self.submitted_by: str = data.pop('submitted_by')
         self.width: int = data.pop('width')
         self.height: int = data.pop('height')
         self.filesize: int = data.pop('filesize')
+        
+        license = data.pop('license')
+        if license.isdigit():
+            license = int(float(license))  # It got mad idk why
+        
+        self.license: Union[int, str] = license
 
     def __str__(self) -> str:
         return self.title
@@ -46,6 +51,13 @@ class Emoji:
             The emojis description formatted correctly with caps.
         """
         return self.description.capitalize()
+    
+    @property
+    def license(self) -> Union[int, str]:
+        license = self._raw.get('license')
+        if license.isdigit():
+            license = int(float(license))  # It got mad idk why
+        return license
 
     async def to_bytes(self) -> Union[io.BytesIO, None]:
         """
