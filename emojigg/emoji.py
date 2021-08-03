@@ -1,8 +1,7 @@
 import io
 from typing import (
     Dict,
-    Union,
-    Any
+    Union
 )
 
 class Emoji:
