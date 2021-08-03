@@ -26,12 +26,6 @@ class Emoji:
         self.width: int = data.pop('width')
         self.height: int = data.pop('height')
         self.filesize: int = data.pop('filesize')
-        
-        license = data.pop('license')
-        if license.isdigit():
-            license = int(float(license))  # It got mad idk why
-        
-        self.license: Union[int, str] = license
 
     def __str__(self) -> str:
         return self.title
