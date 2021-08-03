@@ -52,7 +52,7 @@ class HTTP:
             return await resp.json() 
         
     async def url_to_bytes(self, url: str) -> Union[io.BytesIO, None]:
-        async with self.bot.session.get(url) as resp:
+        async with self.session.get(url) as resp:
             if resp.status != 200:
                 return None
             
