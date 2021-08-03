@@ -5,9 +5,36 @@ from typing import (
     Callable
 )
 
-
 def get(
     iterable: Iterable,
+    **kwargs
+) -> Union[None, Any]:
+    """
+    Get something within a list according to your set attrs.
+
+    Parameters
+    ----------
+    iterable: List[Any]
+        The thing you want to iterate through
+    *args: Any
+        The args you want to check for.
+
+    Examples
+    --------
+    Simple Example:
+    ```python
+    data = get(iterable, id=1234, title='This')
+    ```
+    """
+    check = lambda entry: all((getattr(entry, key) == item for key, item in kwargs.items()))
+    for iteration in iterable:
+        if check(iteration):
+            return iteration
+    return None
+
+def find(
+    iterable: Iterable,
+    *,
     check: Callable
 ) -> Union[None, Any]:
     """
